@@ -1,5 +1,9 @@
 .page-top {
-	background-color: #1E3269;
+	background-color: #3A1762;
+}
+
+.nav-tabs > li > a {
+    color: #ffffff;
 }
 
 .page-header {
@@ -38,17 +42,23 @@ h1, h2, h3, h4 {
     width: 100%;
 }
 
+.vertical-align {
+    display: flex;
+    align-items: center;
+}
 
 .content text1 td {
     display: table-cell;
+    vertical-align: middle !important; /* !important 추가 */
     height: 100px;
-    vertical-align: middle;
-    text-align: center;
+    text-align: left;
 }
 
-.content text1 table, th {
-    vertical-align: middle;
-    text-align: center;
+.content text1 th {
+    background-color: #323232;
+    color: #ffffff;
+    font-size: 13pt;
+    text-align: left;
 }
 
 .top { vertical-align: text-top; }
