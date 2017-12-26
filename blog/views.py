@@ -22,12 +22,15 @@ def item_new(request):
 
 def item_edit(request, name):
     items = item.objects.all()
-#    name.inventory += 1
     Item = get_object_or_404(item, name=name)
     print(request)
     if request.method == "POST":
+        print(request.POST)
         form = itemForm(request.POST, instance=item)
-        Item.inventory = Item.inventory + int(request.POST['addNum'])
+        if('inc' in request.POST):
+            Item.inventory = Item.inventory + int(request.POST['Num'])
+        elif('dec' in request.POST):
+            Item.inventory = Item.inventory - int(request.POST['Num'])
         Item.save()
         return redirect('post_list')
     else:
@@ -36,4 +39,16 @@ def item_edit(request, name):
        Item.save()
        print(Item.inventory)
     return redirect('post_list')
+
+def item_add(request):
+    if request.method == "POST":
+    	print(request.POST)
+#    	print(request.FILES)
+    	form = itemForm(request.POST, request.FILES or None)
+    	if form.is_valid():
+    		form.save()
+    		return redirect('post_list')
+    else:
+        form = itemForm()
+    return render(request, 'blog/item_add.html', {'form': form})
 # Create your views here.

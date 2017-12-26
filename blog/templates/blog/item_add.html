@@ -1,0 +1,9 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div class="subtitle"><h2>추가할 물품(Name: 물품명, Inventory: 수량, upload: 상품 사진)</h2></div>
+    <form method="POST" class="post-form col-md-2" enctype="multipart/form-data">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">추가</button>
+    </form>
+{% endblock %}
