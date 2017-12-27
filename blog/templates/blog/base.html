@@ -13,12 +13,23 @@
         <title>O Thank You</title>       
     </head>
     <body>
+        {% if user.is_active %}
     	<div class="page-top">
 	    	<ul class="nav nav-tabs">
 			  <li role="presentation" class="active"><a href="/">Home</a></li>
 			  <li role="presentation"><a href="/member">Profile</a></li>
 			  <li role="presentation"><a href="#">Messages</a></li>
 			</ul>
+
+            <ul class="nav navbar-nav navbar-right">
+              {% if user.is_active %}
+              <li><a href="{%url 'login' %}"> <span class="glyphicon glyphicon-heart"></span> {{user.username}}</a></li>
+              <li><a href="{% url 'logout' %}">로그아웃</a></li>
+              {% else %}
+              <li><a href="{%url 'login' %}"> <span class="glyphicon glyphicon-user"></span> Login</a></li>
+              <li><a href="{% url 'admin:index' %}">Admin</a></li>
+              {% endif %}
+            </ul>
 		</div>
         <div class="page-header">
 <!--        	<a href="{% url 'item_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a> -->
@@ -28,5 +39,8 @@
     		{% block content %}
     		{% endblock %}
         </div>
+        {% else %}
+            <meta http-equiv="refresh" content="0;url={%url 'login' %}">
+        {% endif %}
     </body>
 </html>

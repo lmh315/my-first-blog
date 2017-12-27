@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <link href="//fonts.googleapis.com/earlyaccess/hanna.css" rel="stylesheet" type="text/css">
+        <title>O Thank You</title>       
+    </head>
+
+    <body>
+      <div class="page-top">
+        <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="/">Home</a></li>
+        <li role="presentation"><a href="/member">Profile</a></li>
+        <li role="presentation"><a href="#">Messages</a></li>
+      </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+              {% if user.is_active %}
+              <li><a href="{%url 'login' %}"> <span class="glyphicon glyphicon-heart"></span> {{user.username}}</a></li>
+              <li><a href="{% url 'logout' %}">로그아웃</a></li>
+              {% else %}
+              <li><a href="{%url 'login' %}"> <span class="glyphicon glyphicon-user"></span> Login</a></li>
+              <li><a href="{% url 'admin:index' %}">Admin</a></li>
+              {% endif %}
+            </ul>
+    </div>
+        <div class="page-header">
+<!--          <a href="{% url 'item_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a> -->
+            <img src="http://othankyou.com/wp/wp-content/uploads/2015/08/o_thanku_logo.png" class="image-responsive" alt="Responsive image">
+        </div>
+        <div class="content">
+
+                    <!-- 로그인 되어있는 경우 -->
+          {% if user.is_active %}
+            <h2> Welcome, {{user.username}} </h2>
+            <a href="{% url 'logout' %}">로그아웃</a>
+
+          <!-- 로그인 되어있지 않은 경우 -->
+          {% else %}
+          {% if form.errors %}
+            <!-- 에러발생시 -->
+            <p>ID나 비밀번호가 일치하지 않습니다.</p>
+          {% endif %}
+            <!-- 로그인 폼 -->
+            <div class="container">
+              <div class="row">
+                <div class="col-sm-6 col-md4 col-md-offset-4">
+                  <h1 class="text-center login-title">Sign in to continue</h1>
+                  <div class="account-wall">
+                    <img class="profile-img img-circle" src="https://cdn.pixabay.com/photo/2016/08/28/13/31/curly-1625960_960_720.png" alt="">
+                    <form method="POST" action="{% url 'login' %}" class="form-signin">
+                      {% csrf_token %}
+                      <!-- <input type="hidden" name="next" value="">
+                      {{form.as_p}} >> 기본으로 내장된 로그인 폼을 아래와 같이 커스터마이징 한다-->
+                      <input class="form-control" placeholder="아이디" id="{{ form.username.id_for_label }}" name="{{ form.username.html_name }}" type="text" required autofocus>
+                      <input class="form-control" placeholder="패스워드" id="{{ form.password.id_for_label }}" name="{{ form.password.html_name }}" type="password" required autofocus>
+                      <input type="submit" class="save btn btn-lg btn-primary btn-block" value="로그인">
+                    </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {% endif %}
+
+        </div>
+    </body>
+</html>
