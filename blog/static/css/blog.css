@@ -106,7 +106,7 @@ h1, h2, h3, h4 {
 
 .subtitle, .subtitle h2 {
     font-family: 'hanna';
-    font-size: 20pt;
+    font-size: 15pt;
 }
 
 .post-form textarea, .post-form input {
@@ -121,7 +121,6 @@ h1, h2, h3, h4 {
 .content td {
     display: table-cell;
     vertical-align: middle !important; /* !important 추가 */
-    height: 100px;
     text-align: center;
 }
 
