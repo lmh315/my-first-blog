@@ -33,7 +33,7 @@
 										<form action="{% url 'item_edit' name=item.name %}" method="POST" class="post-form">{% csrf_token %}
 										  <div class="row">
 										  	<div class="col-md-7">
-											    <input type="number" class="form-control" name="Num" placeholder="수량">
+											    <input type="number" class="form-control input-sm" name="Num" placeholder="수량">
 											</div>
 											<div class="col-md-4">
 												<button type="submit" class="btn btn-default btn-xs" name="inc"><span class="glyphicon glyphicon-plus"></span></button>
