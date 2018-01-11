@@ -15,7 +15,6 @@
 						<thead>
 						<tr>
 							<th class="col-md-1">#</th>
-							<th class="col-md-1"></th>
 					  		<th class="col-md-4">이름</th>
 					  		<th class="col-md-1">남은 수량</th>
 					  		<th class="col-md-1">수량 변경</th>
@@ -28,7 +27,6 @@
 					  		{% for item in items %}
 					  			<tr>
 					  				<td class="col-md-1"><script type="text/javascript">document.write(n); n++;</script></td>
-					  				<td class="col-md-1"><img src="{{item.upload.url}}" class='img-responsive'></td>
 					  				<td class="col-md-4">{{item.name}}</td>
 					  				<td class="col-md-1">{{item.inventory}}</td>
 					  				<td class="col-md-2">
